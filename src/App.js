@@ -1,28 +1,21 @@
-
-import { useDispatch, useSelector } from 'react-redux';
+import Counter from "./components/Counter"
 import './App.css';
-import { counterActions } from './store/slices/counter';
+import { useCounter } from "./customHooks/counter";
 
 function App() {
-  const value = useSelector((state) => state.counter.value);
-  const dispatch = useDispatch();
-
-  const increase = () => {
-    dispatch(counterActions.increment())
-  }
-
-  const decrease = () => {
-    dispatch(counterActions.decrement())
-  }
+  const { count, increment, decrement } = useCounter(0);
 
   return (
-    <div className="App">
-      <h1>Increment/Decrement</h1>
-      <button onClick={increase}>+</button>
+    <>
+      {/* <Counter /> */}
 
-      <span>{value}</span>
-      <button onClick={decrease}>-</button>
-    </div>
+
+      <p>Count: {count}</p>
+      <button onClick={increment}>Increment</button>
+      <button onClick={decrement}>Decrement</button>
+
+
+    </>
   );
 }
 
